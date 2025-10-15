@@ -28,6 +28,10 @@ const AdminSignIn = () => {
       });
       const data = await res.json();
       if (res.ok) {
+        
+        if (data.token) {
+          localStorage.setItem('admin_token', data.token);
+        }
         navigate('/admin/dashboard');
       } else {
         setError(data.message || 'Sign in failed.');
